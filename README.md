@@ -59,3 +59,22 @@ The following arguments are supported:
 The domain you are attempting to set nameservers for must have the
 "Name Server Setting" set to "Name Servers", if it is set to something else
 e.g. "Dynadot Parking", this resource will fail.
+
+# Building
+
+Install [dep]() following the instructions at the website. To download and
+install dependencies use `dep ensure` then proceed to build the project with
+`go build`.
+
+Finally, install the plugin by copying it to your Terraform plugin directory:
+
+```
+cp terraform-provider-plugin
+~/.terraform.d/plugins/terraform-provider-dynadot-v0.1.0
+```
+
+# Links
+
+https://github.com/jsok/terraform-provider-dynadot
+
+https://github.com/DeviaVir/terraform-provider-gsuite

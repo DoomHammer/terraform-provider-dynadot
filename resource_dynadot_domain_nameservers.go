@@ -29,10 +29,18 @@ func resourceDynadotDomainNameservers() *schema.Resource {
 	}
 }
 
+func convertStringSet(set *schema.Set) []string {
+	s := make([]string, 0, set.Len())
+	for _, v := range set.List() {
+		s = append(s, v.(string))
+	}
+	return s
+}
+
 func resourceDynadotDomainNameserversCreate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(dynadot.Client)
 	domain := d.Get("domain").(string)
-	nameservers := d.Get("nameservers").([]string)
+	nameservers := convertStringSet(d.Get("nameservers").(*schema.Set))
 
 	// First determine if the nameservers are registered in the global list
 	registered, err := client.ListNameServers()
